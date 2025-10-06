@@ -27,9 +27,34 @@ export function setupBot(bot: Bot, ollamaService: OllamaService) {
         '🔧 Подбором запчастей с ценами\n' +
         '📋 Информацией об автомобилях\n\n' +
         '━━━━━━━━━━━━━━━━━━━━\n\n' +
-        '💡 Используй /help для списка всех команд',
+        '💡 Используй /help для списка всех команд\n' +
+        '🌐 Или открой /webapp для веб-интерфейса',
       { parse_mode: 'Markdown' }
     )
+  })
+
+  bot.command('webapp', async ctx => {
+    const webappUrl = process.env.WEBAPP_URL
+
+    if (!webappUrl) {
+      await ctx.reply(
+        '⚠️ Веб-приложение не настроено. Обратитесь к администратору.'
+      )
+      return
+    }
+
+    await ctx.reply('🌐 Открой веб-приложение:', {
+      reply_markup: {
+        inline_keyboard: [
+          [
+            {
+              text: '🚗 Открыть AutoAid',
+              web_app: { url: webappUrl },
+            },
+          ],
+        ],
+      },
+    })
   })
 
   bot.command('help', async ctx => {

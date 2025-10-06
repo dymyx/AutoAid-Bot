@@ -55,6 +55,9 @@ jspm_packages/
 
 .npm
 
+# Vite
+public/*
+
 # Optional eslint cache
 
 .eslintcache

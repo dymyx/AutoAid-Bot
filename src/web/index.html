@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AutoAid - Помощник Механик</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>🚗 AutoAid</h1>
+        <p>Виртуальный помощник-механик</p>
+      </header>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="diagnose">
+          🔍 Диагностика
+        </button>
+        <button class="tab-btn" data-tab="code">📟 OBD Код</button>
+        <button class="tab-btn" data-tab="parts">🔧 Запчасти</button>
+        <button class="tab-btn" data-tab="info">🚗 Инфо</button>
+      </div>
+
+      <!-- Вкладка: Диагностика -->
+      <div class="tab-content active" id="diagnose">
+        <textarea
+          id="problem"
+          placeholder="Опишите проблему с автомобилем..."
+          rows="4"
+        ></textarea>
+        <button class="btn-primary" onclick="diagnose()">
+          Диагностировать
+        </button>
+      </div>
+
+      <!-- Вкладка: OBD Код -->
+      <div class="tab-content" id="code">
+        <input
+          type="text"
+          id="obdCode"
+          placeholder="Введите код ошибки (например, P0420)"
+        />
+        <button class="btn-primary" onclick="decodeOBD()">Расшифровать</button>
+      </div>
+
+      <!-- Вкладка: Запчасти -->
+      <div class="tab-content" id="parts">
+        <input type="text" id="partName" placeholder="Название детали" />
+        <input type="text" id="carModel" placeholder="Модель автомобиля" />
+        <button class="btn-primary" onclick="searchParts()">
+          Найти запчасти
+        </button>
+      </div>
+
+      <!-- Вкладка: Информация -->
+      <div class="tab-content" id="info">
+        <input
+          type="text"
+          id="carInfo"
+          placeholder="Модель автомобиля (например, Toyota Camry 2020)"
+        />
+        <button class="btn-primary" onclick="getCarInfo()">
+          Получить информацию
+        </button>
+      </div>
+
+      <div id="loading" class="loading hidden">
+        <!-- Варианты загрузки -->
+        <div class="loading-variant" id="loaderVariant1">
+          <div class="spinner"></div>
+        </div>
+        <div class="loading-variant" id="loaderVariant2">
+          <div class="dots"><span></span><span></span><span></span></div>
+        </div>
+        <div class="loading-variant" id="loaderVariant3">
+          <div class="bars">
+            <span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <p id="loadingPhrase" class="loading-phrase"></p>
+      </div>
+
+      <div id="answer" class="answer-card hidden">
+        <div class="answer-header">
+          <span class="answer-title">💡 Результат</span>
+          <div class="answer-actions">
+            <button
+              id="copyAnswer"
+              class="copy-btn"
+              aria-label="Скопировать ответ"
+            >
+              📋
+            </button>
+          </div>
+        </div>
+        <div id="result" class="result"></div>
+      </div>
+    </div>
+
+    <script type="module" src="./app.ts"></script>
+  </body>
+</html>
