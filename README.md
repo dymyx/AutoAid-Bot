@@ -185,3 +185,7 @@ npm run dev:server
 3. Нажмите **Bot Settings** → **Menu Button**
 4. Выберите **Edit Menu Button URL**
 5. Введите ваш `WEBAPP_URL`
+
+## Лицензия
+
+Этот проект распространяется под лицензией [GNU GPLv3](./LICENSE).
